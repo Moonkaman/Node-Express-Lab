@@ -22,4 +22,10 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json({errorMessage: 'The post information could not be retrieved.', error: err}));
 })
 
+router.delete('/:id', (req, res) => {
+  db.remove(req.params.id)
+    .then(deleted => deleted < 1 ? res.status(404).json({errorMessage: 'The post you tried to delete was not found...'}) : db.find().then(posts => res.status(200).json(posts)).catch(err => res.status(500).json({errorMessage: 'The posts list could not be retrieved.', error: err})))
+    .catch(err => res.status(500).json({errorMessage: 'The post could not be removed.', error: err}));
+})
+
 module.exports = router;
