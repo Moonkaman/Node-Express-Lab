@@ -60,7 +60,7 @@ const App = props => {
   };
 
   return (
-    <div>
+    <div className='App'>
       <Route
         exact
         path="/"

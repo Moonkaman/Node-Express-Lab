@@ -1,0 +1,94 @@
+.post-list-cont {
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px lightgray;
+  padding: 50px;
+  border-radius: 6px;
+  background: #f2f2f2;
+  /* max-height: 90vh;
+  overflow: auto; */
+}
+
+.post-list-cont h1 {
+  margin-bottom: 40px;
+}
+
+.post-cont {
+  /* background: white; */
+  border-bottom: 1px solid lightgray;
+  padding: 20px;
+  /* border-radius: 4px; */
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, border-radius 0.2s ease, height 0.2s ease;
+}
+
+.post-cont:hover {
+  background: #cecece;
+  border-radius: 4px;
+}
+
+.post-cont h4 {
+  margin-bottom: 10px;
+  position: relative;
+  top: 20px;
+  transition: top 0.2s ease;
+}
+
+.post-cont p {
+  margin-bottom: 10px;
+  position: relative;
+  top: 20px;
+  transition: top 0.2s ease;
+}
+
+.post-cont .button-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-cont button {
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.post-cont .edit-btn {
+  background: none;
+  border: none;
+  border: 2px solid #00a8ff;
+  color: #00a8ff;
+}
+
+.post-cont .edit-btn:hover {
+  background: #00a8ff;
+  color: white;
+}
+
+.post-cont .delete-btn {
+  background: none;
+  border: none;
+  border: 2px solid #eb4d4b;
+  color: #eb4d4b;
+}
+
+.post-cont .delete-btn:hover {
+  background: #eb4d4b;
+  color: white;
+}
+
+.post-cont:hover button {
+  opacity: 1;
+}
+
+.post-cont:hover h4 {
+  top: 0px;
+}
+
+.post-cont:hover p {
+  top: 0px;
+}
