@@ -4,7 +4,18 @@ const db = require('../data/db');
 
 const router = express.Router();
 
-router.get('/', (req, res) => db.find().then(posts => res.status(200).json(posts)).catch(err => res.status(500).json({errorMessage: 'The posts information could not be retrieved.', error: err})));
+router.use((req, res, next) => {
+  res.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
+  })
+  next();
+});
+
+router.get('/', (req, res) => {
+  console.log('Get Request @ \'api/posts\'')
+  db.find().then(posts => res.status(200).json(posts)).catch(err => res.status(500).json({errorMessage: 'The posts information could not be retrieved.', error: err}))
+});
 
 router.post('/', (req, res) => {
   if(!req.body.title || !req.body.contents){
