@@ -28,4 +28,23 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(500).json({errorMessage: 'The post could not be removed.', error: err}));
 })
 
+router.put('/:id', async (req, res) => {
+  if(!req.body.title || !req.body.contents) {
+    res.status(400).json({errorMessage: 'Please provide a title and contents.'})
+  } else {
+    try {
+      const posts = await db.update(req.params.id, req.body);
+
+      if(posts > 0) {
+        const post = await db.findById(req.params.id);
+        res.status(201).json(post);
+      } else {
+        res.status(404).json({errorMessage: 'The post you tried to update was not found'})
+      }
+    } catch(error) {
+      res.status(500).json({errorMessage: 'The post information could not be modified.', error})
+    }
+  }
+})
+
 module.exports = router;
