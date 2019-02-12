@@ -13,7 +13,7 @@ const PostList = props => {
         <Post post={post} key={post.id} deletePost={props.deletePost} />
       ))}
       <Link to="/post-form">
-        <button>Add Post</button>
+        <button className="add-post-btn">Add Post</button>
       </Link>
     </div>
   );

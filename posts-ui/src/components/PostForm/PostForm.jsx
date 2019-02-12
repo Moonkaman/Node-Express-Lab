@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import "./PostForm.css";
+
 const PostForm = props => {
   const [postInfo, setPostInfo] = useState({
     title: "",
