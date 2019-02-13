@@ -9,6 +9,8 @@ import "./App.css";
 
 const App = props => {
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState('');
+  const [searchRes, setSearchRes] = useState([]);
 
   const fetchPosts = _ => {
     axios
@@ -20,6 +22,14 @@ const App = props => {
   useEffect(_ => {
     fetchPosts();
   }, []);
+
+  useEffect(_ => {
+    handleSearch();
+  }, [search])
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  }
 
   const deletePost = (e, id) => {
     e.preventDefault();
@@ -59,13 +69,17 @@ const App = props => {
       .catch();
   };
 
+  const handleSearch = _ => {
+    setSearchRes(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())));
+  }
+
   return (
     <div className='App'>
       <Route
         exact
         path="/"
         render={props => (
-          <PostList {...props} posts={posts} deletePost={deletePost} />
+          <PostList {...props} posts={searchRes.length === 0 ? posts : searchRes} deletePost={deletePost} search={search} handleChange={handleChange} />
         )}
       />
       <Route

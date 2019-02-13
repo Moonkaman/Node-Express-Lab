@@ -31,7 +31,7 @@ const PostForm = props => {
   };
 
   return (
-    <form>
+    <form className="post-form">
       <h2>{props.isUpdating ? "Update Post" : "Add a Post"}</h2>
       <h4>Title</h4>
       <input
