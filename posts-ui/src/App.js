@@ -25,7 +25,7 @@ const App = props => {
 
   useEffect(_ => {
     handleSearch();
-  }, [search])
+  }, [search, posts])
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -66,7 +66,7 @@ const App = props => {
         );
         props.history.push("/");
       })
-      .catch();
+      .catch(err => console.log(err));
   };
 
   const handleSearch = _ => {
