@@ -12,7 +12,11 @@ const PostForm = props => {
   useEffect(_ => {
     if (props.match.params.id !== undefined) {
       axios
-        .get(`${props.baseUrl}/api/posts/${props.match.params.id}`)
+        .get(
+          `https://nb-post-server.herokuapp.com/api/posts/${
+            props.match.params.id
+          }`
+        )
         .then(res =>
           setPostInfo({
             title: res.data[0].title,
