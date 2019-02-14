@@ -1,4 +1,6 @@
 require('dotenv').config();
+const cors = require('cors');
+const helmet = require('helmet');
 
 const port = process.env.PORT || 8000;
 
@@ -9,6 +11,9 @@ const postsRouter = require('./posts/postsRouter');
 const server = express();
 
 server.use(express.json());
+server.use(cors());
+server.use(helmet());
+
 
 server.use('/api/posts', postsRouter)
 
