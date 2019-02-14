@@ -12,7 +12,7 @@ const PostForm = props => {
   useEffect(_ => {
     if (props.match.params.id !== undefined) {
       axios
-        .get(`http://localhost:8000/api/posts/${props.match.params.id}`)
+        .get(`${props.baseUrl}/api/posts/${props.match.params.id}`)
         .then(res =>
           setPostInfo({
             title: res.data[0].title,

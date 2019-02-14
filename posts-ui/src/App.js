@@ -12,9 +12,11 @@ const App = props => {
   const [search, setSearch] = useState('');
   const [searchRes, setSearchRes] = useState([]);
 
+  const baseUrl = 'https://nb-post-server.herokuapp.com';
+
   const fetchPosts = _ => {
     axios
-      .get("http://localhost:8000/api/posts")
+      .get(`${baseUrl}/api/posts`)
       .then(res => setPosts(res.data))
       .catch(err => console.log(err));
   };
@@ -34,7 +36,7 @@ const App = props => {
   const deletePost = (e, id) => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:8000/api/posts/${id}`)
+      .delete(`${baseUrl}/api/posts/${id}`)
       .then(res => setPosts(res.data))
       .catch(err => console.log(err));
   };
@@ -42,7 +44,7 @@ const App = props => {
   const addPost = (e, post) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/posts", post)
+      .post(`${baseUrl}/api/posts`, post)
       .then(res => {
         setPosts([...posts, res.data[0]]);
         props.history.push("/");
@@ -53,7 +55,7 @@ const App = props => {
   const updatePost = (e, post, id) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/api/posts/${id}`, post)
+      .put(`${baseUrl}/api/posts/${id}`, post)
       .then(res => {
         setPosts(
           posts.map(post => {
@@ -85,7 +87,7 @@ const App = props => {
       <Route
         exact
         path="/post-form"
-        render={props => <PostForm {...props} addPost={addPost} />}
+        render={props => <PostForm {...props} addPost={addPost} baseUrl={baseUrl} />}
       />
       <Route
         path="/post-form/:id"
